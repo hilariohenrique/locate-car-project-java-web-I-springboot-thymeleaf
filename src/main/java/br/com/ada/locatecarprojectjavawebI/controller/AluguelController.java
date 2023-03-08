@@ -1,10 +1,9 @@
 package br.com.ada.locatecarprojectjavawebI.controller;
 
-import br.com.ada.locatecarprojectjavawebI.AluguelDTO;
+import br.com.ada.locatecarprojectjavawebI.rest.dto.AluguelDTO;
 import br.com.ada.locatecarprojectjavawebI.model.Aluguel;
 import br.com.ada.locatecarprojectjavawebI.service.AluguelService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +51,7 @@ public class AluguelController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/updateAluguel")
+    @PutMapping("/update")
     public ResponseEntity<String> updateAluguel(@RequestBody AluguelDTO aluguelDTO) {
         try {
             Optional<Aluguel> optionalAluguel = this.aluguelService.buscarPorId(aluguelDTO.getId());
@@ -61,10 +60,10 @@ public class AluguelController {
                     aluguelDTO.getDataLocacao().equals(optionalAluguel.get().getDataLocacao())) {
                 Aluguel aluguelDB = optionalAluguel.get();
                 Aluguel aluguelUpdate = Aluguel.builder().id(aluguelDB.getId())
-                        .veiculo(aluguelDB.getVeiculo())
+                        .veiculo(aluguelDTO.getVeiculo())
                         .cliente(aluguelDTO.getCliente())
-                        .dataLocacao(aluguelDB.getDataLocacao())
-                        .dataDevolucao(aluguelDB.getDataDevolucao())
+                        .dataLocacao(aluguelDTO.getDataLocacao())
+                        .dataDevolucao(aluguelDTO.getDataDevolucao())
                         .build();
 
                 this.aluguelService.criarAluguel(aluguelUpdate);
@@ -75,5 +74,9 @@ public class AluguelController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteAluguel(@PathVariable Long id) {
+        this.aluguelService.deleteById(id);
     }
 }

@@ -1,4 +1,4 @@
-package br.com.ada.locatecarprojectjavawebI;
+package br.com.ada.locatecarprojectjavawebI.rest.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
