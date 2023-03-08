@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AluguelService {
@@ -18,5 +19,9 @@ public class AluguelService {
 
     public List<Aluguel> listarAlugueis() {
         return this.aluguelRepository.findAll();
+    }
+
+    public Optional<Aluguel> buscarPorId(Long id) {
+        return this.aluguelRepository.findById(id);
     }
 }
