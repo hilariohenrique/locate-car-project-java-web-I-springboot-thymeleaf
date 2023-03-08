@@ -25,6 +25,7 @@ public class AluguelService {
         return this.aluguelRepository.findById(id);
     }
 
+
     public void deleteById(Long id) {
         this.aluguelRepository.deleteById(id);
     }

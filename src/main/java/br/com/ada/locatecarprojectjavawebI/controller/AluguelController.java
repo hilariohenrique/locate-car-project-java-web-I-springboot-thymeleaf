@@ -51,6 +51,7 @@ public class AluguelController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+
     @PutMapping("/update")
     public ResponseEntity<String> updateAluguel(@RequestBody AluguelDTO aluguelDTO) {
         try {
