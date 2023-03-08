@@ -14,4 +14,5 @@ public class AluguelDTO {
     private String cliente;
     private String dataLocacao;
     private String dataDevolucao;
+
 }
