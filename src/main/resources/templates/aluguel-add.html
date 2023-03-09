@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<h1>Registrar Aluguel</h1>
+<a th:href="@{/alugueis}">Voltar</a>
+<br/><br/>
+<form th:action="@{/aluguel/add}"
+      th:object="${aluguel}" method="POST">
+
+  <div class="container">
+    <div th:if="${aluguel.id}" class="mb-3 row">
+      <label for="inputId" class="col-sm-2 col-form-label">Id</label>
+      <div class="col-sm-10">
+        <input type="text" th:utext="${aluguel.id}" class="form-control" id="inputId">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="inputVeiculo" class="col-sm-2 col-form-label">Veiculo</label>
+      <div class="col-sm-3">
+        <input type="text" th:field="*{veiculo}" class="form-control" id="inputVeiculo">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="inputCliente" class="col-sm-2 col-form-label">Cliente</label>
+      <div class="col-sm-3">
+        <input type="text" th:field="*{cliente}" class="form-control" id="inputCliente">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="inputDataLocacao" class="col-sm-2 col-form-label">Data Locação</label>
+      <div class="col-sm-3">
+        <input type="text" th:field="*{dataLocacao}" class="form-control" id="inputDataLocacao">
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="inputDataDevolucao" class="col-sm-2 col-form-label">Data Devolucão</label>
+      <div class="col-sm-3">
+        <input type="text" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao">
+      </div>
+    </div>
+<!--    <div class="d-flex">-->
+<!--      <label class="col-sm-2 col-form-label">Disponível</label>-->
+<!--      <div class="form-check form-check-inline">-->
+<!--        <input class="form-check-input" type="radio" name="flexRadioDefault" value="true" id="flexRadioDefault1" th:field="*{disponivel}">-->
+<!--        <label class="form-check-label" for="flexRadioDefault1">Sim</label>-->
+<!--      </div>-->
+<!--      <div class="form-check form-check-inline">-->
+<!--        <input class="form-check-input" type="radio" name="flexRadioDefault" value="false" id="flexRadioDefault2" th:field="*{disponivel}" checked>-->
+<!--        <label class="form-check-label" for="flexRadioDefault2">Não</label>-->
+<!--      </div>-->
+<!--    </div>-->
+    <input type="submit" value="Registrar aluguel" class="btn btn-primary mb-3"/>
+  </div>
+</form>
+<br/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "alugueis_tb")
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
