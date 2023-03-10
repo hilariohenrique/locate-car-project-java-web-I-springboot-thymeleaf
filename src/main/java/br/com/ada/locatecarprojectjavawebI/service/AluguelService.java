@@ -3,6 +3,10 @@ package br.com.ada.locatecarprojectjavawebI.service;
 import br.com.ada.locatecarprojectjavawebI.model.Aluguel;
 import br.com.ada.locatecarprojectjavawebI.repository.AluguelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +23,10 @@ public class AluguelService {
 
     public List<Aluguel> listarAlugueis() {
         return this.aluguelRepository.findAll();
+    }
+    public Page<Aluguel> listarAlugueisPaginados(Integer numeroPagina, Integer tamanhoPagina) {
+        return this.aluguelRepository.findAll(PageRequest.of(numeroPagina, tamanhoPagina,
+                Sort.by(Sort.Order.asc("id"))));
     }
 
     public Optional<Aluguel> buscarPorId(Long id) {

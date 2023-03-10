@@ -23,24 +23,36 @@
       <label for="inputVeiculo" class="col-sm-2 col-form-label">Veiculo</label>
       <div class="col-sm-6">
         <input type="text" th:field="*{veiculo}" class="form-control" id="inputVeiculo">
+        <ul>
+          <p th:each="erro: ${#fields.errors('veiculo')}" th:text="${erro}"/>
+        </ul>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="inputCliente" class="col-sm-2 col-form-label">Cliente</label>
       <div class="col-sm-6">
         <input type="text" th:field="*{cliente}" class="form-control" id="inputCliente">
+        <ul>
+          <p th:each="erro: ${#fields.errors('cliente')}" th:text="${erro}"/>
+        </ul>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="inputDataLocacao" class="col-sm-2 col-form-label">Data Locação</label>
       <div class="col-sm-6">
         <input type="text" th:field="*{dataLocacao}" class="form-control" id="inputDataLocacao">
+        <ul>
+          <p th:each="erro: ${#fields.errors('dataLocacao')}" th:text="${erro}"/>
+        </ul>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="inputDataDevolucao" class="col-sm-2 col-form-label">Data Devolucão</label>
       <div class="col-sm-6">
         <input type="text" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao">
+        <ul>
+          <p th:each="erro: ${#fields.errors('dataDevolucao')}" th:text="${erro}"/>
+        </ul>
       </div>
     </div>
     <input type="submit" th:value="${add} ? 'Registrar aluguel' : 'Salvar Edição'" class="btn btn-primary mb-3"/>

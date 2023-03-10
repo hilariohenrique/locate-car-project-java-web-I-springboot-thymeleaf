@@ -2,12 +2,17 @@ package br.com.ada.locatecarprojectjavawebI.controller;
 
 import br.com.ada.locatecarprojectjavawebI.model.Aluguel;
 import br.com.ada.locatecarprojectjavawebI.service.AluguelService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -18,21 +23,25 @@ public class AluguelController {
 
     @GetMapping("/alugueis")
     public String alugueis(Model model) {
-        List<Aluguel> alugueis = this.aluguelService.listarAlugueis();
-        model.addAttribute("alugueis", alugueis);
+        Page<Aluguel> alugueisPaginados = this.aluguelService.listarAlugueisPaginados(1,4);
+        model.addAttribute("alugueis", alugueisPaginados.getContent());
         return "alugueis";
 
     }
 
     @GetMapping("/aluguel/add")
-    public String adicionarAluguel(Model model) {
+    public String adicionarAluguel(Model model, Aluguel aluguel) {
         model.addAttribute("add", Boolean.TRUE);
-        model.addAttribute("aluguel", new Aluguel());
+        model.addAttribute("aluguel", Objects.nonNull(aluguel) ? aluguel : new Aluguel());
         return "aluguel-add";
     }
 
     @PostMapping("/aluguel/add")
-    public String criarAluguel(@ModelAttribute("aluguel") Aluguel aluguel) {
+    public String criarAluguel(@Valid @ModelAttribute("aluguel") Aluguel aluguel,
+                               BindingResult result, Model model) {
+        if(result.hasErrors()){
+           return adicionarAluguel(model, aluguel);
+        }
         this.aluguelService.criarAluguel(aluguel);
         return "redirect:/alugueis";
     }
@@ -52,8 +61,13 @@ public class AluguelController {
     }
 
     @PutMapping("/aluguel/{aluguelId}/edit")
-    public String editarAluguel(@ModelAttribute("aluguel") Aluguel aluguel,
-                                @PathVariable("aluguelId") Long aluguelId){
+    public String editarAluguel(@Valid @ModelAttribute("aluguel") Aluguel aluguel,
+                                @PathVariable("aluguelId") Long aluguelId,
+                                BindingResult result, Model model){
+        if(result.hasErrors()){
+            return adicionarAluguel(model, aluguel);
+        }
+
         aluguel.setId(aluguelId);
         this.aluguelService.criarAluguel(aluguel);
         return "redirect:/alugueis";
