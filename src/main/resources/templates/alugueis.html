@@ -16,7 +16,7 @@
 </div>
 <br/><br/>
 <div>
-    <table border="1">
+    <table class="table">
         <tr>
             <th>Id</th>
             <th>Veículo</th>
@@ -25,12 +25,13 @@
             <th>Data Devolucação</th>
         </tr>
         <tr th:each ="aluguel : ${alugueis}">
-            <td><a th:href="@{/aluguel/{aluguelId}(aluguelId=${aluguel.id})}" th:utext="${aluguel.id}">...</a></td>
+            <td th:utext="${aluguel.id}">...</td>
             <td th:utext="${aluguel.veiculo}">...</td>
             <td th:utext="${aluguel.cliente}">...</td>
             <td th:utext="${aluguel.dataLocacao}">...</td>
             <td th:utext="${aluguel.dataDevolucao}">...</td>
-            <td><a th:href="@{/aluguel/{aluguelId}/edit(aluguelId=${aluguel.id})}">Editar</a></td>
+            <td><a class="btn btn-primary btn-sm" th:href="@{/aluguel/{aluguelId}/edit(aluguelId=${aluguel.id})}">Editar</a></td>
+            <td><a class="btn btn-danger btn-sm" th:href="@{/aluguel/{aluguelId}/delete(aluguelId=${aluguel.id})}">Remover</a></td>
         </tr>
     </table>
 </div>
