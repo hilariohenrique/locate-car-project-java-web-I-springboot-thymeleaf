@@ -13,26 +13,28 @@
             <a th:href="@{/aluguel/add}">Novo Aluguel</a>
         </nobr>
     </div>
-    <br/><br/>
+    <br/>
     <div>
-        <table class="table">
-            <tr>
-                <th>Id</th>
-                <th>Veículo</th>
-                <th>Cliente</th>
-                <th>Data Locação</th>
-                <th>Data Devolucação</th>
-            </tr>
-            <tr th:each ="aluguel : ${alugueis}">
-                <td th:utext="${aluguel.id}">...</td>
-                <td th:utext="${aluguel.veiculo}">...</td>
-                <td th:utext="${aluguel.cliente}">...</td>
-                <td th:utext="${aluguel.dataLocacao}">...</td>
-                <td th:utext="${aluguel.dataDevolucao}">...</td>
-                <td><a class="btn btn-primary btn-sm" th:href="@{/aluguel/{aluguelId}/edit(aluguelId=${aluguel.id})}">Editar</a></td>
-                <td><a class="btn btn-danger btn-sm" th:href="@{/aluguel/{aluguelId}/delete(aluguelId=${aluguel.id})}">Remover</a></td>
-            </tr>
-        </table>
+        <div class="container">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Veículo</th>
+                    <th>Cliente</th>
+                    <th>Data Locação</th>
+                    <th>Data Devolucação</th>
+                </tr>
+                <tr th:each ="aluguel : ${alugueis}">
+                    <td th:utext="${aluguel.id}">...</td>
+                    <td th:utext="${aluguel.veiculo}">...</td>
+                    <td th:utext="${aluguel.cliente}">...</td>
+                    <td th:utext="${aluguel.dataLocacao}">...</td>
+                    <td th:utext="${aluguel.dataDevolucao}">...</td>
+                    <td><a class="btn btn-primary btn-sm" th:href="@{/aluguel/{aluguelId}/edit(aluguelId=${aluguel.id})}">Editar</a></td>
+                    <td><a class="btn btn-danger btn-sm" th:href="@{/aluguel/{aluguelId}/delete(aluguelId=${aluguel.id})}">Remover</a></td>
+                </tr>
+            </table>
+        </div>
         <a th:href="@{/}">Voltar</a>
     </div>
     <br/>
