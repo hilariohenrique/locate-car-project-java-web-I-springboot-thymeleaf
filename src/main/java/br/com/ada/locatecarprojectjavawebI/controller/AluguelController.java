@@ -22,9 +22,15 @@ public class AluguelController {
     private AluguelService aluguelService;
 
     @GetMapping("/alugueis")
-    public String alugueis(Model model) {
-        Page<Aluguel> alugueisPaginados = this.aluguelService.listarAlugueisPaginados(1,4);
+    public String alugueis(@RequestParam(defaultValue = "1") int page,
+                           @RequestParam(defaultValue = "5") int size,
+                           Model model) {
+        Page<Aluguel> alugueisPaginados = this.aluguelService.listarAlugueisPaginados(page - 1, size);
         model.addAttribute("alugueis", alugueisPaginados.getContent());
+        model.addAttribute("totalPages", alugueisPaginados.getTotalPages());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageNum", alugueisPaginados.getNumber());
+        model.addAttribute("pageSize", alugueisPaginados.getSize());
         return "alugueis";
 
     }
@@ -39,8 +45,8 @@ public class AluguelController {
     @PostMapping("/aluguel/add")
     public String criarAluguel(@Valid @ModelAttribute("aluguel") Aluguel aluguel,
                                BindingResult result, Model model) {
-        if(result.hasErrors()){
-           return adicionarAluguel(model, aluguel);
+        if (result.hasErrors()) {
+            return adicionarAluguel(model, aluguel);
         }
         this.aluguelService.criarAluguel(aluguel);
         return "redirect:/alugueis";
@@ -63,11 +69,11 @@ public class AluguelController {
     @PutMapping("/aluguel/{aluguelId}/edit")
     public String editarAluguel(@Valid @ModelAttribute("aluguel") Aluguel aluguel,
                                 @PathVariable("aluguelId") Long aluguelId,
-                                BindingResult result, Model model){
-        if(result.hasErrors()){
-            return adicionarAluguel(model, aluguel);
+                                BindingResult result, Model model) {
+        System.out.println("PAusa");
+        if (result.hasFieldErrors()){
+            return "aluguel-add";
         }
-
         aluguel.setId(aluguelId);
         this.aluguelService.criarAluguel(aluguel);
         return "redirect:/alugueis";

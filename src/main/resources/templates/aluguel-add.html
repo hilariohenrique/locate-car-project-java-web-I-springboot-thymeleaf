@@ -50,9 +50,6 @@
       <label for="inputDataDevolucao" class="col-sm-2 col-form-label">Data Devolucão</label>
       <div class="col-sm-6">
         <input type="text" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao">
-        <ul>
-          <p th:each="erro: ${#fields.errors('dataDevolucao')}" th:text="${erro}"/>
-        </ul>
       </div>
     </div>
     <input type="submit" th:value="${add} ? 'Registrar aluguel' : 'Salvar Edição'" class="btn btn-primary mb-3"/>

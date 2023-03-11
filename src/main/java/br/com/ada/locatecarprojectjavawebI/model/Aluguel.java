@@ -29,7 +29,5 @@ public class Aluguel {
     @NotEmpty(message = "*Campo de preenchimento obrigatório")
     @NotBlank(message = "*Campo vazio")
     private String dataLocacao;
-    @NotEmpty(message = "*Campo de preenchimento obrigatório")
-    @NotBlank(message = "*Campo vazio")
     private String dataDevolucao;
 }
