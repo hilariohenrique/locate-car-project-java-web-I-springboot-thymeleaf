@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,6 +30,6 @@ public class Aluguel {
     private String cliente;
     @NotEmpty(message = "*Campo de preenchimento obrigatório")
     @NotBlank(message = "*Campo vazio")
-    private String dataLocacao;
-    private String dataDevolucao;
+    private LocalDate dataLocacao;
+    private LocalDate dataDevolucao;
 }

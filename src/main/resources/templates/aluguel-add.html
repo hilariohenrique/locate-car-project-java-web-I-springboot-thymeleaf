@@ -7,12 +7,14 @@
 <body>
 
 <main>
-<br/><br/>
+<br/>
 <form th:action="${add} ? @{/aluguel/add} : @{/aluguel/{aluguelId}/edit(aluguelId=${aluguel.id})}"
-      th:object="${aluguel}" th:method="${add} ? POST : PUT">
+      th:object="${aluguel}" th:method=POST>
+<!--  ${add} ? POST : PUT-->
 
   <div class="container">
     <h1 th:text="${add} ? 'Registrar Aluguel' : 'Editar Aluguel'"></h1>
+    <br/>
     <div th:if="${aluguel.id}" class="mb-3 row">
       <label for="inputId" class="col-sm-2 col-form-label">Id</label>
       <div class="col-sm-6">
@@ -21,39 +23,34 @@
     </div>
     <div class="mb-3 row">
       <label for="inputVeiculo" class="col-sm-2 col-form-label">Veiculo</label>
-      <div class="col-sm-6">
-        <input type="text" th:field="*{veiculo}" class="form-control" id="inputVeiculo">
-        <ul>
-          <p th:each="erro: ${#fields.errors('veiculo')}" th:text="${erro}"/>
-        </ul>
+      <div class="col-sm-4">
+        <input type="text" th:errorclass="is-invalid" th:field="*{veiculo}" class="form-control" id="inputVeiculo">
+        <div class="invalid-feedback" th:errors="*{veiculo}"></div>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="inputCliente" class="col-sm-2 col-form-label">Cliente</label>
-      <div class="col-sm-6">
-        <input type="text" th:field="*{cliente}" class="form-control" id="inputCliente">
-        <ul>
-          <p th:each="erro: ${#fields.errors('cliente')}" th:text="${erro}"/>
-        </ul>
+      <div class="col-sm-4">
+        <input type="text" th:errorclass="is-invalid" th:field="*{cliente}" class="form-control" id="inputCliente">
+        <div class="invalid-feedback" th:errors="*{cliente}"></div>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="inputDataLocacao" class="col-sm-2 col-form-label">Data Locação</label>
-      <div class="col-sm-6">
-        <input type="text" th:field="*{dataLocacao}" class="form-control" id="inputDataLocacao">
-        <ul>
-          <p th:each="erro: ${#fields.errors('dataLocacao')}" th:text="${erro}"/>
-        </ul>
+      <div class="col-sm-4">
+        <input type="date"  th:field="*{dataLocacao}" class="form-control" th:errorclass="is-invalid" id="inputDataLocacao">
+        <div class="invalid-feedback" th:errors="*{dataLocacao}"></div>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="inputDataDevolucao" class="col-sm-2 col-form-label">Data Devolucão</label>
-      <div class="col-sm-6">
-        <input type="text" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao">
+      <div class="col-sm-4">
+        <input type="date" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao">
       </div>
     </div>
-    <input type="submit" th:value="${add} ? 'Registrar aluguel' : 'Salvar Edição'" class="btn btn-primary mb-3"/>
     <br/>
+    <input type="submit" value="Salvar" class="btn btn-primary mb-3"/>
+<!--    ${add} ? 'Registrar aluguel' : 'Salvar Edição'-->
     <br/>
     <a th:href="@{/alugueis}">Voltar</a>
   </div>

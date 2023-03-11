@@ -5,7 +5,6 @@ import br.com.ada.locatecarprojectjavawebI.repository.AluguelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ public class AluguelService {
     @Autowired
     private AluguelRepository aluguelRepository;
 
-    public void criarAluguel(Aluguel aluguel){
+    public void salvarAluguel(Aluguel aluguel){
         this.aluguelRepository.save(aluguel);
     }
 

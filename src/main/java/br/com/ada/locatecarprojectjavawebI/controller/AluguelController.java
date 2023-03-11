@@ -9,9 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.*;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -48,7 +45,7 @@ public class AluguelController {
         if (result.hasErrors()) {
             return adicionarAluguel(model, aluguel);
         }
-        this.aluguelService.criarAluguel(aluguel);
+        this.aluguelService.salvarAluguel(aluguel);
         return "redirect:/alugueis";
     }
 
@@ -66,16 +63,16 @@ public class AluguelController {
         return "aluguel-add";
     }
 
-    @PutMapping("/aluguel/{aluguelId}/edit")
+//    @PostMapping("/aluguel/add")
+    @PostMapping("/aluguel/{aluguelId}/edit")
     public String editarAluguel(@Valid @ModelAttribute("aluguel") Aluguel aluguel,
-                                @PathVariable("aluguelId") Long aluguelId,
-                                BindingResult result, Model model) {
-        System.out.println("PAusa");
-        if (result.hasFieldErrors()){
-            return "aluguel-add";
+                                BindingResult bindingResult,
+                                @PathVariable("aluguelId") Long aluguelId, Model model) {
+        if (bindingResult.hasErrors()){
+            return telaEditarAluguel(model,aluguelId);
         }
         aluguel.setId(aluguelId);
-        this.aluguelService.criarAluguel(aluguel);
+        this.aluguelService.salvarAluguel(aluguel);
         return "redirect:/alugueis";
 
     }
