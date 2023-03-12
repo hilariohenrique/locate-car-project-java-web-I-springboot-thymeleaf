@@ -28,8 +28,8 @@
                     <td th:utext="${aluguel.id}">...</td>
                     <td th:utext="${aluguel.veiculo}">...</td>
                     <td th:utext="${aluguel.cliente}">...</td>
-                    <td th:utext="${aluguel.dataLocacao}">...</td>
-                    <td th:utext="${aluguel.dataDevolucao}">...</td>
+                    <td th:utext="${#temporals.format(aluguel.dataLocacao, 'dd-MM-yyyy')}">...</td>
+                    <td th:utext="${#temporals.format(aluguel.dataDevolucao, 'dd-MM-yyyy')}">...</td>
                     <td><a class="btn btn-primary btn-sm" th:href="@{/aluguel/{aluguelId}/edit(aluguelId=${aluguel.id})}">Editar</a></td>
                     <td><a class="btn btn-danger btn-sm" th:href="@{/aluguel/{aluguelId}/delete(aluguelId=${aluguel.id})}">Remover</a></td>
                 </tr>

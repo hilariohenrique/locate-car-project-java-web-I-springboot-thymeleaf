@@ -9,16 +9,16 @@
 <main>
 <br/>
 <form th:action="${add} ? @{/aluguel/add} : @{/aluguel/{aluguelId}/edit(aluguelId=${aluguel.id})}"
-      th:object="${aluguel}" th:method=POST>
-<!--  ${add} ? POST : PUT-->
+      th:object="${aluguel}" th:method="POST">
+<!--  "${add} ? 'POST' : 'PUT'"-->
 
   <div class="container">
     <h1 th:text="${add} ? 'Registrar Aluguel' : 'Editar Aluguel'"></h1>
     <br/>
     <div th:if="${aluguel.id}" class="mb-3 row">
       <label for="inputId" class="col-sm-2 col-form-label">Id</label>
-      <div class="col-sm-6">
-        <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="${aluguel.id}" class="form-control" id="inputId">
+      <div class="col-sm-4">
+        <input type="text" th:readonly="${!add}" th:field="${aluguel.id}" class="form-control" id="inputId">
       </div>
     </div>
     <div class="mb-3 row">
@@ -38,19 +38,17 @@
     <div class="mb-3 row">
       <label for="inputDataLocacao" class="col-sm-2 col-form-label">Data Locação</label>
       <div class="col-sm-4">
-        <input type="date"  th:field="*{dataLocacao}" class="form-control" th:errorclass="is-invalid" id="inputDataLocacao">
-        <div class="invalid-feedback" th:errors="*{dataLocacao}"></div>
+        <input type="text" th:field="*{dataLocacao}" class="form-control" id="inputDataLocacao" th:value="${#temporals.format(aluguel.dataLocacao, 'yyyy-MM-dd')}"/>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="inputDataDevolucao" class="col-sm-2 col-form-label">Data Devolucão</label>
       <div class="col-sm-4">
-        <input type="date" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao">
+        <input type="text" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao" th:value="${#temporals.format(aluguel.dataDevolucao, 'yyyy-MM-dd')}"/>
       </div>
     </div>
     <br/>
-    <input type="submit" value="Salvar" class="btn btn-primary mb-3"/>
-<!--    ${add} ? 'Registrar aluguel' : 'Salvar Edição'-->
+    <input type="submit" th:value="${add} ? 'Registrar aluguel' : 'Salvar Edição'" class="btn btn-primary mb-3"/>
     <br/>
     <a th:href="@{/alugueis}">Voltar</a>
   </div>

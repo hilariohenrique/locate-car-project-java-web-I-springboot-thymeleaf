@@ -63,11 +63,11 @@ public class AluguelController {
         return "aluguel-add";
     }
 
-//    @PostMapping("/aluguel/add")
+
     @PostMapping("/aluguel/{aluguelId}/edit")
-    public String editarAluguel(@Valid @ModelAttribute("aluguel") Aluguel aluguel,
-                                BindingResult bindingResult,
-                                @PathVariable("aluguelId") Long aluguelId, Model model) {
+    public String editarAluguel(@PathVariable("aluguelId") Long aluguelId, Model model,
+                                @Valid @ModelAttribute("aluguel") Aluguel aluguel,
+                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
             return telaEditarAluguel(model,aluguelId);
         }

@@ -5,9 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "alugueis_tb")
@@ -28,8 +27,8 @@ public class Aluguel {
     @NotEmpty(message = "*Campo de preenchimento obrigatório")
     @NotBlank(message = "*Campo vazio")
     private String cliente;
-    @NotEmpty(message = "*Campo de preenchimento obrigatório")
-    @NotBlank(message = "*Campo vazio")
     private LocalDate dataLocacao;
     private LocalDate dataDevolucao;
+
+
 }
