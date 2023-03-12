@@ -38,13 +38,13 @@
     <div class="mb-3 row">
       <label for="inputDataLocacao" class="col-sm-2 col-form-label">Data Locação</label>
       <div class="col-sm-4">
-        <input type="text" th:field="*{dataLocacao}" class="form-control" id="inputDataLocacao" th:value="${#temporals.format(aluguel.dataLocacao, 'yyyy-MM-dd')}"/>
+        <input type="date" th:field="*{dataLocacao}" class="form-control" id="inputDataLocacao" th:value="${#temporals.format(aluguel.dataLocacao, 'yyyy-MM-dd')}"/>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="inputDataDevolucao" class="col-sm-2 col-form-label">Data Devolucão</label>
       <div class="col-sm-4">
-        <input type="text" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao" th:value="${#temporals.format(aluguel.dataDevolucao, 'yyyy-MM-dd')}"/>
+        <input type="date" th:field="*{dataDevolucao}" class="form-control" id="inputDataDevolucao" th:value="${#temporals.format(aluguel.dataDevolucao, 'yyyy-MM-dd')}"/>
       </div>
     </div>
     <br/>
