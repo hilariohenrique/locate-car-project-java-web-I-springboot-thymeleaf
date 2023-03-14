@@ -65,11 +65,14 @@ public class AluguelController {
 
 
     @PostMapping("/aluguel/{aluguelId}/edit")
-    public String editarAluguel(@PathVariable("aluguelId") Long aluguelId, Model model,
+    public String editarAluguel(@PathVariable("aluguelId") Long aluguelId,
+                                Model model,
                                 @Valid @ModelAttribute("aluguel") Aluguel aluguel,
-                                BindingResult bindingResult) {
+                                BindingResult bindingResult
+    ) {
         if (bindingResult.hasErrors()){
-            return telaEditarAluguel(model,aluguelId);
+            model.addAttribute("add", Boolean.FALSE);
+            return "aluguel-add";
         }
         aluguel.setId(aluguelId);
         this.aluguelService.salvarAluguel(aluguel);
