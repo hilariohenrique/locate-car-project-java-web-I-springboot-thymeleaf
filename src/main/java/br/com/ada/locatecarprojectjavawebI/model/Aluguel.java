@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 
 @Entity
-@Entity
 @Table(name = "alugueis_tb")
 @Getter
 @Setter
