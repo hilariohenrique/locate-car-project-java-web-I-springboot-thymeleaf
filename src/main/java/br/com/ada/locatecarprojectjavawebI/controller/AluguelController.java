@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -65,11 +66,13 @@ public class AluguelController {
 
 
     @PostMapping("/aluguel/{aluguelId}/edit")
-    public String editarAluguel(@PathVariable("aluguelId") Long aluguelId, Model model,
+    public String editarAluguel(@PathVariable("aluguelId") Long aluguelId,
+                                Model model,
                                 @Valid @ModelAttribute("aluguel") Aluguel aluguel,
                                 BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            return telaEditarAluguel(model,aluguelId);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("add", Boolean.FALSE);
+            return "aluguel-add";
         }
         aluguel.setId(aluguelId);
         this.aluguelService.salvarAluguel(aluguel);
